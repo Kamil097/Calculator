@@ -6,7 +6,42 @@
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <StackPanel>
+        <TextBlock x:Name="Operation" FontSize="40" />
+        <TextBlock x:Name="ResultText" FontSize="40"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-    </Grid>
+            <Button x:Name="Button1" Click="AddNo" Grid.Row="0" Grid.Column="0" Content="1" FontSize="30"/>
+            <Button x:Name="Button2" Click="AddNo" Grid.Row="0" Grid.Column="1" Content="2" FontSize="30"/>
+            <Button x:Name="Button3" Click="AddNo" Grid.Row="0" Grid.Column="2" Content="3" FontSize="30"/>
+            <Button x:Name="Button4" Click="AddNo" Grid.Row="1" Grid.Column="0" Content="4" FontSize="30"/>
+            <Button x:Name="Button5" Click="AddNo" Grid.Row="1" Grid.Column="1" Content="5" FontSize="30"/>
+            <Button x:Name="Button6" Click="AddNo" Grid.Row="1" Grid.Column="2" Content="6" FontSize="30"/>
+            <Button x:Name="Button7" Click="AddNo" Grid.Row="2" Grid.Column="0" Content="7" FontSize="30"/>
+            <Button x:Name="Button8" Click="AddNo" Grid.Row="2" Grid.Column="1" Content="8" FontSize="30"/>
+            <Button x:Name="Button9" Click="AddNo" Grid.Row="2" Grid.Column="2" Content="9" FontSize="30"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="ZeroB" FontSize="30" Content="0" Width="100" Click="Zero"/>
+            <Button x:Name="ComaB" FontSize="30" Content="," Width="100" Click="Coma"/>
+            <Button x:Name="AddB" FontSize="30" Content="+" Width="100" Click="Add"/>
+            <Button x:Name="MinusB" FontSize="30" Content="-" Width="100" Click="Minus"/>
+            <Button x:Name="MultiplyB" FontSize="30" Content="*" Width="100" Click="Multiply"/>
+            <Button x:Name="DivideB" FontSize="30" Content="/" Width="100" Click="Divide"/>
+            <Button x:Name="ACB" FontSize="30" Content="AC" Width="100" Click="AC"/>
+            <Button x:Name="ResultB" FontSize="30" Content="=" Width="100" Click="Result"/>
+
+        </StackPanel>
+    </StackPanel>
 </Window>
