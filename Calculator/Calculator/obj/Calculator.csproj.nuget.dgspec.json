@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lenovo\\Documents\\Git\\Calculator\\Calculator\\Calculator\\Calculator.csproj": {}
+    "C:\\Users\\kamil\\Desktop\\PythonGry\\Calculator\\Calculator\\Calculator\\Calculator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lenovo\\Documents\\Git\\Calculator\\Calculator\\Calculator\\Calculator.csproj": {
+    "C:\\Users\\kamil\\Desktop\\PythonGry\\Calculator\\Calculator\\Calculator\\Calculator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lenovo\\Documents\\Git\\Calculator\\Calculator\\Calculator\\Calculator.csproj",
+        "projectUniqueName": "C:\\Users\\kamil\\Desktop\\PythonGry\\Calculator\\Calculator\\Calculator\\Calculator.csproj",
         "projectName": "Calculator",
-        "projectPath": "C:\\Users\\lenovo\\Documents\\Git\\Calculator\\Calculator\\Calculator\\Calculator.csproj",
-        "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lenovo\\Documents\\Git\\Calculator\\Calculator\\Calculator\\obj\\",
+        "projectPath": "C:\\Users\\kamil\\Desktop\\PythonGry\\Calculator\\Calculator\\Calculator\\Calculator.csproj",
+        "packagesPath": "C:\\Users\\kamil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kamil\\Desktop\\PythonGry\\Calculator\\Calculator\\Calculator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kamil\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows7.0"
+          "net6.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -57,7 +57,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
