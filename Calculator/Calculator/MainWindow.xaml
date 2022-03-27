@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="320" Width="800">
     <StackPanel>
         <TextBlock x:Name="Operation" FontSize="40" />
         <TextBlock x:Name="ResultText" FontSize="40"/>

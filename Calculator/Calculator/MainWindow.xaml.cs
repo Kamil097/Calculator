@@ -98,7 +98,10 @@ namespace Calculator
             if(!ResultText.Text.Contains('!'))
             {
             Operation.Text = calc(Operation.Text, ',');
+            if(!IsHere(Operation.Text,','))
+            {
             Operation.Text=Operation.Text +',';
+            }
             ResultText.Text=String.Empty;
             }
         }
@@ -125,7 +128,6 @@ namespace Calculator
                 Operation.Text=r;
                 ResultText.Text = Calculation(r);
             }
-
         }
         
         private void AC(object sender, RoutedEventArgs e)
@@ -256,7 +258,6 @@ namespace Calculator
             return ret;
             
         }
-
         private Boolean ZeroChange(string operation)
         {
             var len = operation.Length;
@@ -287,7 +288,6 @@ namespace Calculator
             }
             return false;
         }
-
         private string Calculation(string operation)
         {
             if (operation.Contains('*'))
@@ -328,13 +328,7 @@ namespace Calculator
                 }
             }
             else return default;
-
-
         }
-        //private string CharChange(string operation, )
-        //{
-        //    char[] tab = operation.ToCharArray();
-        //}
+        
     }
-
 }
