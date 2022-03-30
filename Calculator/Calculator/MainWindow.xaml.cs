@@ -28,14 +28,17 @@ namespace Calculator
         }
         private void AddNo(object sender, RoutedEventArgs e)
         {
-            if(ResultText.Text!=string.Empty)
+            if (ResultText.Text != string.Empty)
             {
-                ResultText.Text=string.Empty;
-                Operation.Text=string.Empty;
+                ResultText.Text = string.Empty;
+                Operation.Text = string.Empty;
             }
+            if(Operation.Text.Contains('!'))
+                Operation.Text = string.Empty;
+
             var button = sender as Button;
             var currentNumber = button.Name[button.Name.Length - 1];
-            ResultText.Text=string.Empty;
+            ResultText.Text = string.Empty;
             if (!(IsHere(Operation.Text, ',')))
             {
                 if (ZeroChange(Operation.Text))
@@ -52,84 +55,186 @@ namespace Calculator
         }
         private void Zero(object sender, RoutedEventArgs e)
         {
-            if (IsHere(Operation.Text, ','))
-            { Operation.Text += '0'; }
-            else if (CanZero(Operation.Text, '0'))
+            if (ResultText.Text == string.Empty)
+            {
+                if (IsHere(Operation.Text, ','))
+                { Operation.Text += '0'; }
+                else if (CanZero(Operation.Text, '0'))
+                    Operation.Text += '0';
+            }
+            else 
+            {
+                ResultText.Text = String.Empty;
+                Operation.Text = String.Empty;
                 Operation.Text += '0';
+            }
         }
         private void Add(object sender, RoutedEventArgs e)
         {
-            if(!ResultText.Text.Contains('!'))
+            if (!ResultText.Text.Contains('E'))
             {
-                Operation.Text = calc(Operation.Text, '+');
-                Operation.Text=ResultCalc(Operation.Text,ResultText.Text,'+');
-                ResultText.Text=String.Empty;
+                if (Operation.Text.Contains('!'))
+                    Operation.Text = string.Empty;
+                if (!ResultText.Text.Contains('!'))
+                {
+                    if (ResultText.Text == string.Empty)
+                    {
+                        Operation.Text = calc(Operation.Text, '+');
+                        Operation.Text = ResultCalc(Operation.Text, ResultText.Text, '+');
+                        ResultText.Text = String.Empty;
+                    }
+                    else
+                    {
+                        Operation.Text = ResultText.Text + '+';
+                        ResultText.Text = string.Empty;
+                    }
+                }
             }
         }
         private void Minus(object sender, RoutedEventArgs e)
         {
-            if(!ResultText.Text.Contains('!'))
+            if (!ResultText.Text.Contains('E'))
             {
-            Operation.Text = calc(Operation.Text, '-');
-            Operation.Text=ResultCalc(Operation.Text,ResultText.Text,'-');
-            ResultText.Text=String.Empty;
+                if (Operation.Text.Contains('!'))
+                    Operation.Text = string.Empty;
+                if (!ResultText.Text.Contains('!'))
+                {
+                    if (ResultText.Text == string.Empty)
+                    {
+                        Operation.Text = calc(Operation.Text, '-');
+                        Operation.Text = ResultCalc(Operation.Text, ResultText.Text, '-');
+                        ResultText.Text = String.Empty;
+                    }
+                    else
+                    {
+                        Operation.Text = ResultText.Text + '-';
+                        ResultText.Text = string.Empty;
+                    }
+                }
             }
         }
         private void Multiply(object sender, RoutedEventArgs e)
         {
-            if(!ResultText.Text.Contains('!'))
+            if (!ResultText.Text.Contains('E'))
             {
-            Operation.Text = calc(Operation.Text, '*');
-            Operation.Text=ResultCalc(Operation.Text,ResultText.Text,'*');
-            ResultText.Text=String.Empty;
+                if (Operation.Text.Contains('!'))
+                    Operation.Text = string.Empty;
+                if (!ResultText.Text.Contains('!'))
+                {
+                    if (ResultText.Text == string.Empty)
+                    {
+                        Operation.Text = calc(Operation.Text, '*');
+                        Operation.Text = ResultCalc(Operation.Text, ResultText.Text, '*');
+                        ResultText.Text = String.Empty;
+                    }
+                    else
+                    {
+                        Operation.Text = ResultText.Text + '*';
+                        ResultText.Text = string.Empty;
+                    }
+                }
             }
         }
         private void Divide(object sender, RoutedEventArgs e)
         {
-            if(!ResultText.Text.Contains('!'))
+            if (!ResultText.Text.Contains('E'))
             {
-            Operation.Text = calc(Operation.Text, '/');
-            Operation.Text=ResultCalc(Operation.Text,ResultText.Text,'/');
-            ResultText.Text=String.Empty;
+                if (Operation.Text.Contains('!'))
+                    Operation.Text = string.Empty;
+                if (!ResultText.Text.Contains('!'))
+                {
+                    if (ResultText.Text == string.Empty)
+                    {
+                        Operation.Text = calc(Operation.Text, '/');
+                        Operation.Text = ResultCalc(Operation.Text, ResultText.Text, '/');
+                        ResultText.Text = String.Empty;
+                    }
+                    else
+                    {
+                        Operation.Text = ResultText.Text + '/';
+                        ResultText.Text = string.Empty;
+                    }
+                }
             }
         }
         private void Coma(object sender, RoutedEventArgs e)
         {
-            if(!ResultText.Text.Contains('!'))
+            if (Operation.Text.Contains('!'))
+                Operation.Text = string.Empty;
+            char[] tab = Operation.Text.ToCharArray();
+            var i = tab.Length - 1;
+            if (!ResultText.Text.Contains('!'))
             {
-            Operation.Text = calc(Operation.Text, ',');
-            if(!IsHere(Operation.Text,','))
-            {
-            Operation.Text=Operation.Text +',';
-            }
-            ResultText.Text=String.Empty;
+                if (!ResultText.Text.Contains('E'))
+                {
+
+                    if (ResultText.Text == string.Empty)
+                    {
+                        if (!IsHere(Operation.Text, ','))
+                        {
+                            if (tab.Length > 0)
+                            {
+                                if (!(tab[i] == '+' || tab[i] == '-' || tab[i] == '*' || tab[i] == '/'))
+                                    Operation.Text = Operation.Text + ',';
+                                else
+                                    Operation.Text = calc(Operation.Text, ',');
+                            }
+                        }
+                    }
+                    else if (!IsHere(ResultText.Text, ','))
+                    {
+                        Operation.Text = ResultText.Text + ',';
+                        ResultText.Text = string.Empty;
+                    }
+                    //ResultText.Text = String.Empty;
+                }
             }
         }
         private void Result(object sender, RoutedEventArgs e)
         {
-            var len = Operation.Text.Length-1;
-            if(!(Operation.Text!=String.Empty&&ResultText.Text!=String.Empty))
+            var len = Operation.Text.Length - 1;
+            if (!(Operation.Text != String.Empty && ResultText.Text != String.Empty))
             {
-                if(!(Operation.Text[len]==('+')||Operation.Text[len]==('-')||Operation.Text[len]==('*')||Operation.Text[len]==('/')))
+                if (!(Operation.Text[len] == ('+') || Operation.Text[len] == ('-') || Operation.Text[len] == ('*') || Operation.Text[len] == ('/')))
                 {
-                ResultText.Text = Calculation(Operation.Text);
+                    ResultText.Text = Calculation(Operation.Text);
                 }
             }
             else
             {
                 var r = Operation.Text;
+                var n = Operation.Text;
                 char p = 'x';
-                if(r.Contains('*')){p='*';}
-                else if(r.Contains('/')){p='/';}
-                else if(r.Contains('+')){p='+';}
-                else if(r.Contains('-')){p='-';}
-                var calc = r.Split(p);
-                r = ResultText.Text+p+calc[1];
-                Operation.Text=r;
-                ResultText.Text = Calculation(r);
+                if (r.Contains('*')) { p = '*'; }
+                else if (r.Contains('/')) { p = '/'; }
+                else if (r.Contains('+')) {
+                    p = '+';
+                    var calc = r.Split(p);
+                    r = ResultText.Text + p + calc[1];
+                    Operation.Text = r;
+                    ResultText.Text = Calculation(r);
+                }
+                else if (n.Contains('-')) {
+                    if (n[0] == '-')
+                    {
+                        n = n.Remove(0, 1);
+                        var calc2 = n.Split('-');
+                        n = ResultText.Text + '-' + calc2[1];
+                        Operation.Text = n;
+                        ResultText.Text = Calculation(n);
+                    }
+                    else 
+                    {
+                        var calc2 = n.Split('-');
+                        n = ResultText.Text + '-' + calc2[1];
+                        Operation.Text = n;
+                        ResultText.Text = Calculation(n);
+
+                    }
+                }
             }
         }
-        
+
         private void AC(object sender, RoutedEventArgs e)
         {
             ResultText.Text = String.Empty;
@@ -178,6 +283,21 @@ namespace Calculator
                 {
                     return true;
                 }
+                else if (tab[len - 1] == '/' || tab[len - 1] == '*' || tab[len - 1] == '+' || tab[len - 1] == '-')
+                {
+                    for (int j = len - 2; j >= 0; j--)
+                    {
+                        if (tab[j] == x)
+                        {
+                            return true;
+                        }
+                        else if (tab[j] == '/' || tab[j] == '*' || tab[j] == '+' || tab[j] == '-')
+                        {
+                            return false;
+                        }
+
+                    }
+                }
                 else if (tab[i] == '/' || tab[i] == '*' || tab[i] == '+' || tab[i] == '-')
                 {
                     return false;
@@ -188,36 +308,43 @@ namespace Calculator
         }
         private string calc(string operation, char x)
         {
-            if(operation.Length!=0)
+            if (operation.Length != 0)
             {
-            char[] tab = operation.ToCharArray();
-            var i = tab.Length - 1;
-            if (tab[i] == '/' || tab[i] == '*' || tab[i] == '+' || tab[i] == '-' || tab[i]==',')
-            {
-                tab[i] = x;
+               
+                char[] tab = operation.ToCharArray();
+                var i = tab.Length - 1;
+                var y = tab[i];
+                
+                if (tab[i] == '/' || tab[i] == '*' || tab[i] == '+' || tab[i] == '-' || tab[i] == ',')
+                {
+                    tab[i] = 'b';
+                    if (!(tab.Contains('/') || tab.Contains('*') || tab.Contains('+') || tab.Contains('-')))
+                        tab[i] = x;
+                    else
+                        tab[i] = y;
+                    return new string(tab);
+                }
                 return new string(tab);
-            }
-            return new string(tab);
             }
             return operation;
         }
-        private string ResultCalc(string operation,string result,char x) 
+        private string ResultCalc(string operation, string result, char x)
         {
-            var ret="";
-            if(!(result!=string.Empty && operation!=string.Empty)) //jeżeli nic nie ma w konsoli, znak nie doda się
+            var ret = "";
+            if ((result != string.Empty || operation != string.Empty)) //jeżeli nic nie ma w konsoli, znak nie doda się
             {
-                if(result==string.Empty) //jedynie znajduje się coś w operacji
+                if (result == string.Empty) //jedynie znajduje się coś w operacji
                 {
-                    if(operation[0]=='-')
+                    if (operation[0] == '-')
                     {
-                        var operation2 = operation.Remove(0,1);
-                        var len = operation2.Length-1;
-                        if (operation2.Contains('+')||operation2.Contains('-')||operation2.Contains('*')||operation2.Contains('/'))
+                        var operation2 = operation.Remove(0, 1);
+                        var len = operation2.Length - 1;
+                        if (operation2.Contains('+') || operation2.Contains('-') || operation2.Contains('*') || operation2.Contains('/'))
                         {
-                            if(!(operation2[len]==('+')||operation2[len]==('-')||operation2[len]==('*')||operation2[len]==('/')))
+                            if (!(operation2[len] == ('+') || operation2[len] == ('-') || operation2[len] == ('*') || operation2[len] == ('/')))
                             {
                                 ret = Calculation(operation2);
-                                ret+=x;
+                                ret += x;
                             }
                             else
                             {
@@ -226,18 +353,19 @@ namespace Calculator
                         }
                         else
                         {
-                            ret = operation+x;
+                            ret = operation + x;
                         }
                     }
                     else
                     {
-                        var len = operation.Length-1;
-                        if (operation.Contains('+')||operation.Contains('-')||operation.Contains('*')||operation.Contains('/'))
+                        var len = operation.Length - 1;
+                        if (operation.Contains('+') || operation.Contains('-') || operation.Contains('*') || operation.Contains('/'))
                         {
-                           if(!(operation[len]==('+')||operation[len]==('-')||operation[len]==('*')||operation[len]==('/')))
+                            if (!(operation[len] == ('+') || operation[len] == ('-') || operation[len] == ('*') || operation[len] == ('/')))
                             {
                                 ret = Calculation(operation);
-                                ret+=x;
+                                if(!(ret.Contains('!')))
+                                ret += x;
                             }
                             else
                             {
@@ -246,17 +374,18 @@ namespace Calculator
                         }
                         else
                         {
-                            ret = operation+x;
+                            ret = operation + x;
                         }
                     }
                 }
             }
             else
             {
-                ret = result+x;
+                if(Operation.Text!=string.Empty)
+                ret = result + x;
             }
             return ret;
-            
+
         }
         private Boolean ZeroChange(string operation)
         {
@@ -264,7 +393,7 @@ namespace Calculator
             char[] tab = operation.ToCharArray();
             if (len != 0)
             {
-                if (tab[len-1] == '0')
+                if (tab[len - 1] == '0')
                 { return true; }
 
                 else
@@ -316,8 +445,8 @@ namespace Calculator
             {
                 if (operation[0] == '-')
                 {
-                    operation.Remove(0, 1);
-                    var tab = operation.Split('-');
+                    var x = operation.Remove(0, 1);
+                    var tab = x.Split('-');
                     return (-double.Parse(tab[0]) - double.Parse(tab[1])).ToString();
 
                 }
@@ -329,6 +458,6 @@ namespace Calculator
             }
             else return default;
         }
-        
+
     }
 }
